@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Creator Focus OS — Built in Notion</title>
+  <meta name="description" content="Stop overthinking. Start creating. Creator Focus OS is a focused productivity system built in Notion for creators using a mode-based workflow (Money, Build, Grow, Rest)." />
+
+  <!-- Social preview (optional but nice) -->
+  <meta property="og:title" content="Creator Focus OS — Built in Notion" />
+  <meta property="og:description" content="Stop overthinking. Start creating. A mode-based Notion OS for creators." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --card:#0f1624;
+      --text:#e8eefc;
+      --muted:#a8b3cf;
+      --line:rgba(255,255,255,.08);
+      --accent:#7c5cff;
+      --accent2:#22c55e;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius:18px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(124,92,255,.22), transparent 55%),
+        radial-gradient(1000px 500px at 80% 15%, rgba(34,197,94,.10), transparent 55%),
+        var(--bg);
+      line-height:1.45;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 70px;}
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:14px 0 22px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      background:linear-gradient(135deg, var(--accent), rgba(124,92,255,.2));
+      box-shadow:0 0 0 6px rgba(124,92,255,.12);
+    }
+    .brand b{letter-spacing:.2px}
+    .pill{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+      white-space:nowrap;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap:22px;
+      align-items:stretch;
+      margin-top:8px;
+    }
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr; }
+    }
+    .card{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-left{padding:26px 22px;}
+    h1{
+      margin:0 0 12px;
+      font-size:44px;
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    @media (max-width: 520px){
+      h1{font-size:36px;}
+    }
+    .sub{
+      color:var(--muted);
+      font-size:16px;
+      max-width:60ch;
+      margin:0 0 18px;
+    }
+    .tagline{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin:14px 0 18px;
+    }
+    .tag{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .cta{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:16px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      text-decoration:none;
+      font-weight:600;
+      transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{transform:translateY(-1px); background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
+    .btn.primary{
+      border-color:rgba(124,92,255,.55);
+      background:linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.55));
+    }
+    .btn.primary:hover{border-color:rgba(124,92,255,.75);}
+    .btn.ghost{color:var(--muted); font-weight:600;}
+    .smallnote{
+      margin-top:10px;
+      font-size:13px;
+      color:rgba(168,179,207,.9);
+    }
+
+    .hero-right{
+      display:flex; flex-direction:column;
+    }
+    .gallery{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      padding:12px;
+    }
+    .shot{
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.18);
+      overflow:hidden;
+      aspect-ratio: 16 / 10;
+      position:relative;
+    }
+    .shot img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+      transform:scale(1.01);
+    }
+    .shot::after{
+      content:"";
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.18), transparent 55%);
+      pointer-events:none;
+    }
+    .gallery-note{
+      padding:0 14px 16px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    .section{
+      margin-top:22px;
+      padding:22px;
+    }
+    h2{
+      margin:0 0 10px;
+      font-size:26px;
+      letter-spacing:-.3px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    @media (max-width: 920px){
+      .grid{grid-template-columns:1fr 1fr;}
+    }
+    @media (max-width: 560px){
+      .grid{grid-template-columns:1fr;}
+    }
+    .feat{
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+    }
+    .feat b{display:block; margin-bottom:6px;}
+    .feat p{margin:0; color:var(--muted); font-size:14px;}
+    .twoCol{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 920px){
+      .twoCol{grid-template-columns:1fr;}
+    }
+    .list{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+    }
+    .list li{margin:7px 0;}
+    .footer{
+      margin-top:20px;
+      padding:18px 22px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:13px;
+    }
+    code.inline{
+      background:rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      padding:3px 8px;
+      border-radius:999px;
+      color:rgba(232,238,252,.9);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- EDIT THESE LINKS IF NEEDED -->
+  <script>
+    const GUMROAD_URL = "https://denskie1.gumroad.com/l/twujka";
+  </script>
+
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
+        <span class="dot"></span>
+        <b>Creator Focus OS</b>
+      </a>
+      <span class="pill">Built in Notion • Mode-Based Focus</span>
+    </div>
+
+    <div class="hero">
+      <div class="card hero-left">
+        <h1>Stop overthinking.<br/>Start creating.</h1>
+        <p class="sub">
+          <b>Creator Focus OS</b> is a focused productivity system built in Notion for creators who have too many ideas,
+          too many tabs, and no clear starting point.
+        </p>
+
+        <div class="tagline">
+          <span class="tag">One focus per day</span>
+          <span class="tag">Money / Build / Grow / Rest</span>
+          <span class="tag">Decision fatigue → clarity</span>
+          <span class="tag">Built for real creator energy</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn primary" href="https://denskie1.gumroad.com/l/twujka" target="_blank" rel="noopener">Get it on Gumroad →</a>
+          <a class="btn ghost" href="#features">See what’s inside ↓</a>
+        </div>
+
+        <div class="smallnote">
+          Buy once • Use forever • Simple setup • Keep only what helps
+        </div>
+      </div>
+
+      <div class="card hero-right">
+        <div class="gallery">
+          <!-- Your preview images -->
+          <a class="shot" href="https://denskie1.gumroad.com/l/twujka" target="_blank" rel="noopener" title="Preview 1">
+            <img alt="Creator Focus OS Preview 1" src="https://www.notion.so/picture-2f89dffcf6b48081a1b1dcbb2e5fa828?source=copy_link#2f89dffcf6b480538439e0da4c7f24a8">
+          </a>
+          <a class="shot" href="https://denskie1.gumroad.com/l/twujka" target="_blank" rel="noopener" title="Preview 2">
+            <img alt="Creator Focus OS Preview 2" src="https://www.notion.so/picture-2f89dffcf6b48081a1b1dcbb2e5fa828?source=copy_link#2f89dffcf6b48039a2fccdc30d8effe8">
+          </a>
+          <a class="shot" href="https://denskie1.gumroad.com/l/twujka" target="_blank" rel="noopener" title="Preview 3">
+            <img alt="Creator Focus OS Preview 3" src="https://www.notion.so/picture-2f89dffcf6b48081a1b1dcbb2e5fa828?source=copy_link#2f89dffcf6b4807bbcb7f4123beefa7f">
+          </a>
+          <a class="shot" href="https://denskie1.gumroad.com/l/twujka" target="_blank" rel="noopener" title="Preview 4">
+            <img alt="Creator Focus OS Preview 4" src="https://www.notion.so/picture-2f89dffcf6b48081a1b1dcbb2e5fa828?source=copy_link#2f89dffcf6b480c1b6f1ff25e9da012c">
+          </a>
+        </div>
+        <div class="gallery-note">
+          Tap any preview to open the Gumroad page.
+        </div>
+      </div>
+    </div>
+
+    <div id="features" class="card section">
+      <h2>What it is</h2>
+      <p class="sub" style="margin:0;">
+        A creator-first operating system built entirely in Notion — designed around four intentional modes:
+        <b>Money</b>, <b>Build</b>, <b>Grow</b>, and <b>Rest</b>.
+        You operate in <b>one mode at a time</b> so decision fatigue drops and progress becomes obvious.
+      </p>
+
+      <div class="grid">
+        <div class="feat">
+          <b>🧠 Today Focus Block</b>
+          <p>Start with one question: <i>What is the ONE thing I’m doing today?</i> If it’s not the focus, it doesn’t exist today.</p>
+        </div>
+        <div class="feat">
+          <b>🎛 Mode Board</b>
+          <p>A single task board that adapts to Money / Build / Grow / Rest — with tags for effort and energy.</p>
+        </div>
+        <div class="feat">
+          <b>⏱ Mode-Based Focus Timer</b>
+          <p>Locks your mode while running, encourages deep work, and logs sessions (so you stop mode-hopping).</p>
+        </div>
+        <div class="feat">
+          <b>📉 Decision Fatigue Meter</b>
+          <p>When you feel foggy, check the meter. It suggests: continue, switch mode, or rest intentionally.</p>
+        </div>
+        <div class="feat">
+          <b>🎬 Content Pipeline</b>
+          <p>Idea → Script → Editing → Ready → Posted. Clean and simple for creators who publish.</p>
+        </div>
+        <div class="feat">
+          <b>🔁 Daily Reset</b>
+          <p>One small win, what drained you, and tomorrow’s focus — progress compounds quietly.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card section">
+      <div class="twoCol">
+        <div>
+          <h2>Who it’s for</h2>
+          <ul class="list">
+            <li>You have many ideas but struggle to start.</li>
+            <li>You jump between tasks and lose momentum.</li>
+            <li>You feel busy but not progressing.</li>
+            <li>You burn out from “always-on” productivity.</li>
+            <li>You want structure that works with your energy.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>What you get</h2>
+          <ul class="list">
+            <li>Fully built Notion OS (duplicate-ready)</li>
+            <li>“Start Here” guide + setup instructions</li>
+            <li>Customizable dashboards</li>
+            <li>Lifetime access (buy once, use forever)</li>
+            <li>Free future updates</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta" style="margin-top:18px;">
+        <a class="btn primary" href="https://denskie1.gumroad.com/l/twujka" target="_blank" rel="noopener">Open Gumroad →</a>
+        <a class="btn" href="#faq">Quick notes ↓</a>
+      </div>
+    </div>
+
+    <div id="faq" class="card section">
+      <h2>Important notes</h2>
+      <ul class="list">
+        <li>You can customize anything — add/remove pages freely.</li>
+        <li>You don’t need to use everything. Keep it simple.</li>
+        <li>Works best when you commit to one mode + one focus per day.</li>
+      </ul>
+
+      <div class="footer card" style="box-shadow:none; background:rgba(255,255,255,.02); border-radius:16px;">
+        <div>Creator Focus OS • Built in Notion</div>
+        <div>Gumroad: <code class="inline">denskie1.gumroad.com/l/twujka</code></div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
